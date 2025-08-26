@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ai Assistant</title>
+        <style>
+ body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+}
+
+h1 {
+    margin: 0;
+    top: 20px;
+    left: 20px;
+    position: absolute;
+    font-size: 24px;
+}
+
+#chat-box {
+    flex: 1;
+    margin-top: 80px;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#chat-box div {
+    padding: 10px 14px;
+    border-radius: 16px;
+    max-width: 70%;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+#chat-box div:nth-child(odd) {
+    background-color: #d1e7dd;
+    align-self: flex-end;
+}
+
+#chat-box div:nth-child(even) {
+    background-color: #e2e3e5;
+    align-self: flex-start;
+}
+
+.input-area {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #ffffff;
+    border-top: 1px solid #ccc;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+}
+
+#user-input {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px 0 0 6px;
+    outline: none;
+    padding-right: 40px;
+    position: relative;
+}
+
+#send-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-left: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0; 
+    transition: background-color 0.3s;
+}
+#clear-btn {
+    margin-left: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #dc3545;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#clear-btn:hover {
+    background-color: #b02a37;
+}
+ .back-button {
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      background-color: transparent;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: black;
+        z-index: 1000;
+    text-decoration: none; 
+}
+    .product-link-btn {
+    border: 2px solid black;
+    padding: 10px 14px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 6px;
+}
+        </style>
+    </head>
+    <body>
+        <h1>sumoudAI</h1>
+        <div id="chat-box">
+
+        </div>
+      <div class="input-area">
+    <div style="position: relative; width: 100%;">
+        <input type="text" id="user-input" placeholder="Ask a question"/>
+        <button id="send-btn" onclick="sendMessage()">Send</button>
+         <button id="clear-btn" onclick="clearConversation()">Clear</button>
+    </div>
+</div>
+ <button class="back-button" onclick="history.back()">&#8592;</button>
+        <script>
+function sendMessage() {
+    const userInput = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+    const message = userInput.value.trim().toLowerCase();
+    if (message === "") return;
+
+    const userMsg = document.createElement("div");
+    userMsg.textContent = "You: " + message;
+    chatBox.appendChild(userMsg);
+
+    const aiMsg = document.createElement("div");
+
+    const hoodieTypes = [
+        "Alsumoud Black Hoodie",
+        "Alsumoud Green Hoodie",
+        "Alsumoud Beige Hoodie",
+        "Alsumoud Red Hoodie"
+    ];
+
+    function containsAny(message, keywords) {
+        return keywords.some(k => message.includes(k));
+    }
+
+    const intents = {
+        greeting: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"],
+        thanks: ["thank", "thanks", "thank you"],
+        askHoodies: [
+            "types of hoodies", "what hoodies", "hoodie types", "hoodies available",
+            "what clothing", "clothing types", "clothing available", "show clothes", "show clothing",
+            "type of clothing", "types of clothing", "what type", "what types", "what do you have"
+        ],
+        productBlack: ["black hoodie", "black edition", "black color hoodie"],
+        productGreen: ["green hoodie", "green edition"],
+        productLight: [
+            "beige hoodie", "white hoodie", "tan hoodie", "light yellow hoodie",
+            "beige edition", "white edition", "tan edition", "light yellow edition"
+        ],
+        productRed: ["red hoodie", "red edition", "red color hoodie"],
+        productJacket: ["jacket", "coat", "outerwear"]
+    };
+
+    if (containsAny(message, intents.askHoodies)) {
+        aiMsg.textContent = "AI: Here are the hoodie types we have:";
+        aiMsg.style.alignSelf = "flex-start";
+        chatBox.appendChild(aiMsg);
+
+        const list = document.createElement("div");
+        list.style.whiteSpace = "pre-line";
+        list.textContent = hoodieTypes.join("\n");
+        list.style.backgroundColor = "#e2e3e5";
+        list.style.alignSelf = "flex-start";
+        list.style.padding = "10px 14px";
+        list.style.borderRadius = "16px";
+        list.style.maxWidth = "70%";
+        list.style.fontSize = "14px";
+        list.style.lineHeight = "1.4";
+        chatBox.appendChild(list);
+
+        userInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return;
+    }
+
+    const productMap = [
+        { keywords: intents.productBlack, link: "product1.html", label: "Go to Black Product"},
+        { keywords: intents.productGreen, link: "product2.html", label: "Go to Green Product" },
+        { keywords: intents.productLight, link: "product3.html", label: "Go to Light Color Product" },
+        { keywords: intents.productRed, link: "product4.html", label: "Go to Red Product" },
+    ];
+
+    for (const item of productMap) {
+        if (containsAny(message, item.keywords)) {
+            aiMsg.textContent = "AI: Sure! Here's what you're looking for:";
+            aiMsg.style.alignSelf = "flex-start";
+
+            const btn = document.createElement("button");
+            btn.textContent = item.label;
+            btn.className = "product-link-btn"; 
+            btn.onclick = () => window.location.href = item.link;
+            chatBox.appendChild(aiMsg);
+            chatBox.appendChild(btn);
+
+            userInput.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return;
+        }
+    }
+
+    if (containsAny(message, intents.greeting)) {
+        aiMsg.textContent = "AI: Hello! How can I assist you today?";
+        aiMsg.style.alignSelf = "flex-start";
+        chatBox.appendChild(aiMsg);
+        userInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return;
+    }
+
+    if (containsAny(message, intents.thanks)) {
+        aiMsg.textContent = "AI: You're welcome! Let me know if you need anything else.";
+        aiMsg.style.alignSelf = "flex-start";
+        chatBox.appendChild(aiMsg);
+        userInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return;
+    }
+
+    aiMsg.textContent = "AI: Sorry, I didn't understand that. Try asking about hoodie types or specific colors like 'black hoodie'.";
+    aiMsg.style.alignSelf = "flex-start";
+    chatBox.appendChild(aiMsg);
+
+    userInput.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function clearConversation() {
+    const chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML = "";
+}
+</script>
+    </body>
+</html>

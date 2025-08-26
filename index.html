@@ -1,0 +1,180 @@
+<!doctype html> 
+<html>
+    <head>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://www.shutterstock.com/image-vector/smooth-grey-gradient-background-soft-600nw-2340953293.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    h1 {
+cursor: pointer;}
+    p {color:black;}
+    img {transition: transform 0.4s,box-shadow 0.4s;
+    cursor: pointer;}
+    img:hover {transform: rotateY(20deg) scale(1.1);
+    }
+    nav { 
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    nav a {
+        color: black;
+        text-decoration: none;
+        margin: 0 20px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid black;
+        padding: 8px 16px;
+        }
+    nav a:hover {background-color: lightgray;}
+    .menu {font-size: 30px;
+    cursor: pointer;
+     position:fixed;
+       user-select: none;
+          z-index: 1000;
+             top: 20px;
+               left: 20px;}
+               #links {
+                background-color: black;
+                top:60px;
+                bottom: 20px;
+                display: none;
+                position: fixed;
+                width: 120px;
+                padding: 10px;
+                border: 1px solid white;
+               }
+               #links nav a {
+                display: block;
+                margin:5px 0 ;
+                text-decoration: none;
+                color: white;
+               }
+               .logo-container img { 
+                height: auto;
+                max-width: 220px;
+                margin: 0 auto;
+          display: block;
+    box-shadow: none;
+}
+              .logo-container { 
+            
+                background: transparent;
+                text-align: center;
+                margin-bottom: 0;
+            padding: 20px 0;
+            border: 10px solid black;
+        }           
+               .logo-video {
+                border: 2px solid black;
+  background: transparent;
+  display: block;
+  margin: 0 auto;
+  max-width: 220px;
+  height: auto;         
+  outline: none;         
+  box-shadow: none;      
+background-color: transparent;
+}
+
+    </style>
+    </head>
+<body>
+      <div class="logo-container"><video class="logo-video" autoplay muted loop playsinline>
+  <source src="ScreenRecording_07-19-2025 15-02-19_1.mp4" type="video/mp4">
+</video>
+       </div>
+    <h1 style="padding: 10px; background: transparent; font-family: sans-serif; text-align: center;">Alsumoud Hoodies</h1>
+     <div class="menu" onclick="toggleMenu()">&#9776;</div>
+     <div id="links" style="display: none;">
+        <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="help.html">Help</a>
+       </nav>
+    </div>
+    <br>
+    <div class="card">
+        <table width="100%">
+<tr>
+    <td align="left">
+        <table>
+            <tr>
+       
+     <td align="center">
+        <a href="product1.html" style="text-decoration: none; color: black;">
+        <img src="da0285365cd0e519e9dc567f05f64a7f.jpeg" width="250" height="200" style="margin-right:1em; border:15px solid black;">
+        
+        <p><em>Black Edition<br>$35.99</em></p> 
+       </a>
+    </td>
+    </tr>
+    </table>
+    </td>
+     <td align="center">
+        <table>
+            <tr>
+                   
+     <td align="center">
+        <a href="product2.html" style="text-decoration: none; color: black;">
+        <img src="02b6645b3da2733923ffdd243a2d38a0.jpeg" width="250" height="200" style="margin-right:1em; border:15px solid black;">
+        
+        <p><em>Green Edition<br>$41.99</em></p>
+     </a>
+    </td>
+    </tr>
+    </table>
+    </td>
+     <td align="right">
+        <table>
+            <tr>
+                   
+     <td align="center">
+        <a href="product3.html" style="text-decoration: none; color: black;">
+        <img src="ef5836733ae684e8ff2899b4ee142802.jpeg" width="250" height="200" style="margin-right:1em; border:15px solid black;">
+
+        <p><em>Beige Edition<br>$37.99</em></p>
+     </a>
+    </td>
+    </tr>
+    </table>
+    </td>
+</tr>
+     </table>
+    </div>
+        <br>
+      <div class="card">
+        <table width="100%">
+<tr>            
+     <td align="center">
+        <a href="product4.html" style="text-decoration: none; color: black;">
+        <img src="a16876a22c97f1c833c52485744e3bc9.jpeg" width="250" height="200" style="margin-right:1em; border:15px solid black;">
+       <p><em>Red Edition<br>$39.99</em></p>
+     </a>
+    </td>
+    </tr>
+    </table>
+    </td>
+</tr>
+     </table>
+      </div>
+        <br>
+        <p>Need help? Contact support<br><button>Via Email</button><br><button>Via Phone</button></p>
+        <script>
+    function toggleMenu() {
+        const  menu= document.getElementById('links');
+if(menu.style.display==='none'){
+(menu.style.display='block')
+}else{
+    (menu.style.display='none');
+}
+ }
+</script>
+    </body>
+</html> 

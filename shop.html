@@ -1,0 +1,140 @@
+<!doctype html> 
+<html>
+    <head>
+    <style>
+    body {background-image: url('https://www.shutterstock.com/image-vector/smooth-grey-gradient-background-soft-600nw-2340953293.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;}
+    h1 {color:black;margin-top: 30px;transition: transform 0.4s,box-shadow 0.4s;
+    box-shadow: 0 25px 25px grey;
+cursor: pointer; border: 15px solid black;}
+    p {color:black;
+}
+    img {transition: transform 0.4s,box-shadow 0.4s;
+    box-shadow: 0 25px 25px black;
+cursor: pointer;}
+    img:hover {transform: rotateY(20deg) scale(1.1);
+    box-shadow: 0 25px 35px black;}
+    nav { 
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    nav a {
+        color: black;
+        text-decoration: none;
+        margin: 0 20px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid black;
+        padding: 8px 16px;
+        }
+    nav a:hover {background-color: black;}
+    .menu {font-size: 30px;
+    cursor: pointer;
+     position:fixed;
+       user-select: none;
+          z-index: 1000;
+             top: 20px;
+               left: 20px;}
+               #links {
+                background-color: black;
+                top:60px;
+                bottom: 20px;
+                display: none;
+                position: fixed;
+                width: 120px;
+                padding: 10px;
+                border: 1px solid white;
+               }
+               #links nav a {
+                display: block;
+                margin:5px 0 ;
+                text-decoration: none;
+                color: white;
+               }
+               .title {position: relative;
+            font-size: 38px;
+        font-family: sans-serif;
+    text-align: center;
+color: black;
+margin-top: 30px;
+animation: fadeSlide 1.5s ease forwards;}
+.logo {animation: fadeSlide 1.5s ease forwards;}
+@keyframes fadeSlide {
+0% { opacity: 0;
+    transform: rotateY(40deg);
+    }
+    100% {opacity:1;
+    transform: rotateY(0deg);
+}
+    }
+   
+    </style>
+    </head>
+<body>
+     
+       <div style="text-align: center; margin-bottom: 10px;" class="logo"><img src="236704f4131fbdf2d0927a9bc3ac4990__2_-removebg-preview.png" style="cursor: default; box-shadow: none; width: 600px; height: 400px; transition: none;">
+       </div>
+    <h1 class="title">Shop Clothing</h1>
+     <div class="menu" onclick="toggleMenu()">&#9776;
+     </div>
+     <div id="links" style="display: none;">
+        <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="help.html">Help</a>
+       </nav>
+    </div>
+        <p style="text-align: center;">Look your best, forget the rest!</p>
+    <br>
+     <table width="100%" style="margin-left: 40px; margin-top: 30px;">
+  <tr style="margin-bottom: 30px; display: block;">
+    <td>
+         <a href="product1.html" style="text-decoration: none; color: black;">
+        <img src="da0285365cd0e519e9dc567f05f64a7f.jpeg" width="250" height="200" style="border:15px solid black;"></td>
+    <td style="vertical-align: middle; padding-left: 20px;">
+      <p><strong>Alsumoud Black Hoodie</strong><br><em>$35.99</em></p></a>
+    </td>
+  </tr>
+
+  <tr style="margin-bottom: 30px; display: block;">
+    <td>
+        <a href="product2.html" style="text-decoration: none; color: black;">
+        <img src="02b6645b3da2733923ffdd243a2d38a0.jpeg" width="250" height="200" style="border:15px solid black;"></td>
+    <td style="vertical-align: middle; padding-left: 20px;">
+      <p><strong>Alsumoud Green Hoodie</strong><br><em>$41.99</em></p></a>
+    </td>
+  </tr>
+
+  <tr style="margin-bottom: 30px; display: block;">
+    <td>
+        <a href="product3.html" style="text-decoration: none; color: black;">
+        <img src="ef5836733ae684e8ff2899b4ee142802.jpeg" width="250" height="200" style="border:15px solid black;"></td>
+    <td style="vertical-align: middle; padding-left: 20px;">
+      <p><strong>Alsumoud Beige Hoodie</strong><br><em>$37.99</em></p></a>
+    </td>
+  </tr>
+
+  <tr style="margin-bottom: 30px; display: block;">
+    <td>
+        <a href="product4.html" style="text-decoration: none; color: black;">
+        <img src="a16876a22c97f1c833c52485744e3bc9.jpeg" width="250" height="200" style="border:15px solid black;"></td>
+    <td style="vertical-align: middle; padding-left: 20px;">
+      <p><strong>Alsumoud Red Hoodie</strong><br><em>$39.99</em></p></a>
+    </td>
+  </tr>
+</table>
+        <br>
+        <p>Need help? Contact support<br><button>Via Email</button><br><button>Via Phone</button></p>
+        <script>
+    function toggleMenu() {
+        const  menu= document.getElementById('links');
+if(menu.style.display==='none'){
+menu.style.display='block'
+}else{
+    menu.style.display='none';
+}
+ }
+</script>
+    </body>
+</html> 

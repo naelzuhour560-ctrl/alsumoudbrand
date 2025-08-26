@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+             body {background-image: url('https://www.shutterstock.com/image-vector/smooth-grey-gradient-background-soft-600nw-2340953293.jpg');
+             background-size: cover;
+             background-repeat: no-repeat;
+             background-position: center; 
+             min-height:100vh;
+             margin:0;
+            justify-content: center;
+        align-items: center;
+    display: flex;}
+    .product-image {
+        width: 400px;
+        height: auto;
+        border: 15px solid black;
+        box-shadow: black;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        cursor: pointer;
+    }
+    .product-image:hover {
+        box-shadow: black;
+        transform: scale(1.05);
+    }
+ .brand {
+ font-size: 20px;
+     font-weight: bold;
+     margin-top: 10px;
+    text-align: center;
+    color: black;
+    }
+.sizes {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    
+.size-option {
+     display: inline-block;
+  border: 2px solid black;
+  padding: 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 40%; 
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: bold;
+  background-color: white;
+}
+
+.size-option.selected {
+  background-color: yellow;
+  outline: 3px solid black;
+}
+
+    .quantity {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    input[type="number"] {
+      padding: 5px;
+      font-size: 16px;
+      width: 60px;
+    }
+
+    .add-btn {
+      display: block;
+      margin: 15px auto;
+      background: yellow;
+      border: 2px solid black;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: transparent;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: black;
+        z-index: 1000;
+    text-decoration: none; }
+    .slider-container {
+  position: relative;
+  width: 600px;   
+  height: 300px; 
+  border: 15px solid black;
+  margin: 0 auto 10px auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: white;
+}
+
+.slider-image {
+  display: none; 
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  cursor: pointer;
+}
+
+.slider-image.active {
+  display: block;
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: black;
+  background:yellow;
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  line-height: 41px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+}
+.arrow.left {
+  left: 10px;
+  display: none;
+}
+.arrow.right {
+  right: 10px;
+}  
+#fullscreenOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.go-cart { 
+   display: none; 
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  background: yellow;
+  border: 2px solid black;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  color: black;
+}
+</style>
+    </head>
+<body>
+    <button class="back-button" onclick="history.back()">&#8592;</button>
+<table width="100%">
+<tr>
+    <td align="center">
+        <table>
+            <tr>
+       
+     <td align="center">
+        <div class="slider-container">
+  <img src="da0285365cd0e519e9dc567f05f64a7f.jpeg"  class="slider-image active" id="img1">
+  <img src="316ef4342e9ae46ec438bd2746bc27d2.jpeg"class="slider-image" id="img2">
+
+
+  <div class="arrow left" id="leftArrow">&#8592;</div>
+  <div class="arrow right" id="rightArrow">&#8594;</div>
+</div>
+        
+        <p><em>Alsumoud Hoodie</em></p> 
+       </a>
+<div class="brand">$35.99</div>
+<div class="sizes">
+    <div class="size-option" onclick="selectSize(this)">Small</div>
+    <div class="size-option" onclick="selectSize(this)">Medium</div>
+    <div class="size-option" onclick="selectSize(this)">Large</div>
+</div>
+<div class="quantity">
+  Quantity: <input type="number" id="quantity" min="1" value="1">
+     </div>
+ <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+     <a href="cart.html"><button id="goCartBtn" class="go-cart">Go To Cart</button></a>
+ </td>
+    </tr>
+    </table>
+    </td>
+</tr>
+</table>
+<div id="fullscreenOverlay" style="display:none;">
+  <button id="closeFullscreen" style="
+    position: fixed; top: 20px; left: 20px; font-size: 40px; background: yellow; border: 2px solid black; border-radius: 50%; cursor: pointer; z-index: 1001;">&#8592;</button>
+  <img id="fullscreenImage" src="" style="
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    max-width: 90vw; max-height: 90vh; border: 15px solid black; box-sizing: border-box; background: white;"/>
+</div>
+<script>
+    let selectedSize='';
+    let productPrice= 35.99;
+    
+    function selectSize(element) {
+        const sizeOptions = document.querySelectorAll('.size-option');
+        sizeOptions.forEach(option => option.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedSize = element.textContent;
+    }
+
+    function addToCart() {
+        if (!selectedSize) {
+            alert("Please select a size.");
+            return;
+        }
+
+        const quantity = document.getElementById('quantity').value;
+        const totalPrice = productPrice * quantity;
+
+        const cartItem = {
+            name: "Alsumoud Hoodie",
+            price: productPrice,
+            totalPrice: totalPrice,
+            size: selectedSize,
+            quantity: quantity,
+            image: "da0285365cd0e519e9dc567f05f64a7f.jpeg"
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(cartItem);
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert("Product added to cart!");
+        console.log(cart);
+            document.getElementById('goCartBtn').style.display = 'inline-block';
+    }
+</script>
+<script>
+  const img1 = document.getElementById('img1');
+const img2 = document.getElementById('img2');
+const leftArrow = document.getElementById('leftArrow');
+const rightArrow = document.getElementById('rightArrow');
+
+rightArrow.addEventListener('click', () => {
+  img1.classList.remove('active');
+  img2.classList.add('active');
+  rightArrow.style.display = 'none';
+  leftArrow.style.display = 'block';
+});
+
+leftArrow.addEventListener('click', () => {
+  img2.classList.remove('active');
+  img1.classList.add('active');
+  leftArrow.style.display = 'none';
+  rightArrow.style.display = 'block';
+});
+</script>
+<script>
+    const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+const fullscreenImage = document.getElementById('fullscreenImage');
+const closeFullscreen = document.getElementById('closeFullscreen');
+
+document.querySelectorAll('.slider-image').forEach(img => {
+  img.addEventListener('click', () => {
+    if (img.classList.contains('active')) {
+      fullscreenImage.src = img.src;
+      fullscreenOverlay.style.display = 'flex';
+    }
+  });
+});
+
+closeFullscreen.addEventListener('click', () => {
+  fullscreenOverlay.style.display = 'none';
+});
+</script>
+    </body>
+</html>
