@@ -12,8 +12,8 @@
         align-items: center;
     display: flex;}
     .product-image {
-        width: 400px;
-        height: auto;
+        width: 500px;
+        height: 1000px;
         border: 15px solid black;
         box-shadow: black;
         transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -24,9 +24,9 @@
         transform: scale(1.05);
     }
  .brand {
- font-size: 20px;
+ font-size: 50px;
      font-weight: bold;
-     margin-top: 10px;
+     margin-top: 5px;
     text-align: center;
     color: black;
     }
@@ -43,12 +43,13 @@
   margin: 0 5px;
   cursor: pointer;
   border-radius: 40%; 
-  width: 50px;
-  height: 50px;
-  line-height: 40px;
+  width: 100px;
+  height: 100px;
+  line-height: 85px;
   text-align: center;
   font-weight: bold;
   background-color: white;
+  font-size: 30px;
 }
 
 .size-option.selected {
@@ -59,12 +60,14 @@
     .quantity {
       text-align: center;
       margin-top: 10px;
+      font-size: 50px;
     }
 
     input[type="number"] {
       padding: 5px;
-      font-size: 16px;
+      font-size: 30px;
       width: 60px;
+      border: 2px solid black;
     }
 
     .add-btn {
@@ -75,7 +78,8 @@
       padding: 10px 20px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 50px;
+      width: 400px;
     }
     .back-button {
       position: fixed;
@@ -83,15 +87,15 @@
       left: 20px;
       background-color: transparent;
       border: none;
-      font-size: 30px;
+      font-size: 90px;
       cursor: pointer;
       color: black;
         z-index: 1000;
     text-decoration: none; }
     .slider-container {
   position: relative;
-  width: 600px;   
-  height: 300px; 
+  width: 800px;   
+  height: 600px; 
   border: 15px solid black;
   margin: 0 auto 10px auto;
   overflow: hidden;
@@ -115,18 +119,18 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 40px;
+  font-size: 80px;
   color: black;
-  background:yellow;
-  border: 2px solid black;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  line-height: 41px;
+  width: 100px;
+  height: 100px;
+  line-height: 85px;
   text-align: center;
   cursor: pointer;
   user-select: none;
   z-index: 10;
+  border: 1px solid black;
+  background: yellow;
 }
 .arrow.left {
   left: 10px;
@@ -148,17 +152,18 @@
   z-index: 1000;
 }
 .go-cart { 
-   display: none; 
-  margin: 10px auto;
-  padding: 10px 20px;
-  font-weight: bold;
-  font-size: 16px;
-  background: yellow;
-  border: 2px solid black;
-  cursor: pointer;
-  display: block;
-  text-align: center;
-  color: black;
+ display: block;
+      margin: 15px auto;
+      background: orange;
+      border: 2px solid black;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 50px;
+      width: 400px;
+}
+p { 
+  font-size: 50px;
 }
 </style>
     </head>

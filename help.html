@@ -1,131 +1,177 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Ai Assistant</title>
-        <style>
- body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: grey;
-}
+  <head>
+      <meta charset="utf-8" />
+  <title>Ai Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #dcdcdc;
+      }
 
-h1 {
-    margin: 0;
-    top: 20px;
-    left: 20px;
-    position: absolute;
-    font-size: 24px;
-}
+      h1 {
+        margin: 0;
+        position: absolute;
+        top: 16px;
+        right: 140px;
+        font-size: clamp(32px, 8vw, 48px);
+      }
 
-#chat-box {
-    flex: 1;
-    margin-top: 80px;
-    padding: 20px;
-    overflow-y: auto;
-    background-color: lightgrey;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+      #chat-box {
+        flex: 1;
+        margin-top: 88px;
+        padding: 20px;
+        overflow-y: auto;
+        background-color: #dcdcdc;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: min(1100px, 96vw);
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 240px;
+      }
 
-#chat-box div {
-    padding: 10px 14px;
-    border-radius: 16px;
-    max-width: 70%;
-    font-size: 14px;
-    line-height: 1.4;
-    word-wrap: break-word;
-}
+      #chat-box div {
+        padding: 14px 18px;
+        border-radius: 18px;
+        max-width: 94%;
+        font-size: 17px;
+        line-height: 1.5;
+        word-wrap: break-word;
+      }
 
-#chat-box div:nth-child(odd) {
-    background-color: #d1e7dd;
-    align-self: flex-end;
-}
+      #chat-box div:nth-child(odd) {
+        background-color: #d1e7dd;
+        align-self: flex-end;
+        color: #000;
+      }
 
-#chat-box div:nth-child(even) {
-    background-color: #e2e3e5;
-    align-self: flex-start;
-}
+      #chat-box div:nth-child(even) {
+        background-color: #505662;
+        align-self: flex-start;
+        color: #fff;
+      }
 
-.input-area {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    background-color: #ffffff;
-    border-top: 1px solid #ccc;
-    max-width: 500px;
-    margin: 0 auto;
-    box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
-}
+      .input-area {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: max(16px, env(safe-area-inset-bottom));
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        width: min(1100px, 94vw);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+      }
 
-#user-input {
-    flex: 1;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px 0 0 6px;
-    outline: none;
-    padding-right: 40px;
-    position: relative;
-}
+      #user-input {
+        flex: 1;
+        min-width: 0;
+        padding: 14px 16px;
+        font-size: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        outline: none;
+        height: 84px;
+      }
 
-#send-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: 1px solid black;
-    border-left: none;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    border-radius: 0 6px 6px 0; 
-    transition: background-color 0.3s;
-}
-#clear-btn {
-    margin-left: 8px;
-    padding: 10px 14px;
-    font-size: 14px;
-    border: 1px solid #dc3545;
-    background-color: #dc3545;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-#clear-btn:hover {
-    background-color: #b02a37;
-}
- .back-button {
-      position: fixed;
-      top: 80px;
-      left: 20px;
-      background-color: transparent;
-      border: none;
-      font-size: 30px;
-      cursor: pointer;
-      color: black;
+      #send-btn {
+        padding: 0 22px;
+        height: 40px;
+        font-size: 20px;
+        border: 1px solid black;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+
+      #clear-btn {
+        padding: 0 16px;
+        height: 30px;
+        font-size: 20px;
+        border: 1px solid #dc3545;
+        background-color: #dc3545;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      #clear-btn:hover {
+        background-color: #b02a37;
+      }
+
+      .back-button {
+        position: fixed;
+        top: 1px;
+        left: 16px;
+        background-color: transparent;
+        border: none;
+        font-size: 60px;
+        cursor: pointer;
+        color: black;
         z-index: 1000;
-    text-decoration: none; 
-}
-    .product-link-btn {
-    border: 2px solid black;
-    padding: 10px 14px;
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 6px;
-}
-        </style>
-    </head>
+        text-decoration: none;
+
+      }
+
+      .product-link-btn {
+        border: 2px solid black;
+        padding: 12px 16px;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 8px;
+        font-size: 16px;
+      }
+
+      @media (min-width: 900px) {
+        #chat-box {
+          gap: 14px;
+          padding-bottom: 260px;
+          max-width: 1100px;
+        }
+        #chat-box div {
+          max-width: 90%;
+          font-size: 18px;
+          padding: 16px 20px;
+        }
+        .input-area {
+          width: min(1100px, 92vw);
+          bottom: 24px;
+          gap: 10px;
+        }
+        #user-input {
+          font-size: 22px;
+          height: 60px;
+        }
+        #send-btn {
+          font-size: 20px;
+          height: 60px;
+        }
+        #clear-btn {
+          font-size: 18px;
+          height: 60px;
+        }
+      }
+      
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+</head>
+  </head> 
     <body>
         <h1>sumoudAI</h1>
         <div id="chat-box">
@@ -139,125 +185,118 @@ h1 {
     </div>
 </div>
  <button class="back-button" onclick="history.back()">&#8592;</button>
-        <script>
+      <script>
+
+const PRODUCTS = [
+  {id:"black", name:"Alsumoud Black Hoodie", link:"product1.html", price:35.99, colors:["black"], sizes:["S","M","L","XL"], material:"fleece cotton blend"},
+  {id:"green", name:"Alsumoud Green Hoodie", link:"product2.html", price:41.99, colors:["green"], sizes:["S","M","L","XL"], material:"fleece cotton blend"},
+  {id:"beige", name:"Alsumoud Beige Hoodie", link:"product3.html", price:37.99, colors:["beige","tan","light yellow","white"], sizes:["S","M","L","XL"], material:"fleece cotton blend"},
+  {id:"red", name:"Alsumoud Red Hoodie", link:"product4.html", price:39.99, colors:["red"], sizes:["S","M","L","XL"], material:"fleece cotton blend"}
+];
+
+const FAQ = [
+  {q:"what hoodies do you have", tags:["types","catalog","hoodies","products"], a:()=>"We have Black, Green, Beige, and Red editions."},
+  {q:"sizes available", tags:["size","sizes","sizing"], a:()=>"All hoodies come in S, M, L."},
+  {q:"materials", tags:["material","fabric","what is it made of"], a:()=>"All hoodies use a premium fleece cotton blend."},
+  {q:"care", tags:["wash","care","laundry","instructions"], a:()=>"Machine wash cold, inside out. Tumble dry low."},
+  {q:"shipping", tags:["ship","shipping","delivery"], a:()=>"US shipping in 3–5 business days."},
+  {q:"returns", tags:["return","refund","exchange"], a:()=>"30-day returns on unworn items with tags."},
+  {q:"price", tags:["price","cost","how much"], a:(ctx)=> {
+    if (ctx.color && ctx.product) return `${ctx.product.name} is $${ctx.product.price.toFixed(2)}.`;
+    return "Which color are you asking about: Black, Green, Beige, or Red?";
+  }},
+];
+
+const fuse = new Fuse(FAQ, { keys:["q","tags"], threshold:0.35, includeScore:true });
+
+const COLORS = [...new Set(PRODUCTS.flatMap(p=>p.colors))];
+const CLOTHING_SCOPE = ["hoodie","hoodies","clothing","shop","cart","size","sizes","color","colors","price","cost","shipping","returns","material","fabric","care","wash","delivery","exchange"];
+
+function parseContext(msg) {
+  const lower = msg.toLowerCase();
+  const color = COLORS.find(c => lower.includes(c));
+  const product = PRODUCTS.find(p => p.colors.includes(color||""));
+  const wantsPrice = /\b(price|cost|how much|\$\s*\d*)\b/.test(lower);
+  const wantsSizes = /\b(size|sizes|s|m|l|xl)\b/.test(lower);
+  const wantsMaterial = /\b(material|fabric)\b/.test(lower);
+  const wantsCare = /\b(wash|care|laundry|clean)\b/.test(lower);
+  const inScope = CLOTHING_SCOPE.some(k => lower.includes(k)) || !!color;
+  return {lower,color,product,wantsPrice,wantsSizes,wantsMaterial,wantsCare,inScope};
+}
+
+function respond(text, align="left") {
+  const chatBox = document.getElementById("chat-box");
+  const div = document.createElement("div");
+  div.textContent = text;
+  if (align==="left") div.style.alignSelf = "flex-start";
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function respondWithButton(label, link) {
+  const chatBox = document.getElementById("chat-box");
+  const btn = document.createElement("button");
+  btn.textContent = label;
+  btn.className = "product-link-btn";
+  btn.onclick = () => window.location.href = link;
+  chatBox.appendChild(btn);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getAnswer(message) {
+  const ctx = parseContext(message);
+  if (!ctx.inScope) return "I can help with Alsumoud hoodies, sizes, colors, prices, materials, care, shipping and returns.";
+
+  if (ctx.wantsPrice && ctx.product) return `${ctx.product.name} is $${ctx.product.price.toFixed(2)}.`;
+  if (ctx.wantsSizes && ctx.product) return `${ctx.product.name} sizes: ${ctx.product.sizes.join(", ")}.`;
+  if (ctx.wantsMaterial && ctx.product) return `${ctx.product.name} material: ${ctx.product.material}.`;
+  if (ctx.wantsCare) return "Machine wash cold, inside out. Tumble dry low.";
+
+  if (ctx.color && ctx.product) {
+    return `Here’s the ${ctx.product.name}.`;
+  }
+
+  const res = fuse.search(ctx.lower);
+  if (res.length && res[0].score <= 0.45) {
+    const top = res[0].item;
+    if (typeof top.a === "function") return top.a(ctx);
+    return top.a;
+  }
+
+  return "Ask about our hoodies, sizes, colors, prices, materials, care, shipping, or returns.";
+}
+
 function sendMessage() {
-    const userInput = document.getElementById("user-input");
-    const chatBox = document.getElementById("chat-box");
-    const message = userInput.value.trim().toLowerCase();
-    if (message === "") return;
+  const userInput = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
+  const message = userInput.value.trim();
+  if (message === "") return;
 
-    const userMsg = document.createElement("div");
-    userMsg.textContent = "You: " + message;
-    chatBox.appendChild(userMsg);
+  const userMsg = document.createElement("div");
+  userMsg.textContent = "You: " + message;
+  userMsg.style.alignSelf = "flex-end";
+  chatBox.appendChild(userMsg);
 
-    const aiMsg = document.createElement("div");
+  const reply = getAnswer(message);
+  respond("AI: " + reply, "left");
 
-    const hoodieTypes = [
-        "Alsumoud Black Hoodie",
-        "Alsumoud Green Hoodie",
-        "Alsumoud Beige Hoodie",
-        "Alsumoud Red Hoodie"
-    ];
+  const ctx = parseContext(message);
+  if (ctx.product) {
+    respondWithButton(`Go to ${ctx.product.name}`, ctx.product.link);
+  }
 
-    function containsAny(message, keywords) {
-        return keywords.some(k => message.includes(k));
-    }
-
-    const intents = {
-        greeting: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"],
-        thanks: ["thank", "thanks", "thank you"],
-        askHoodies: [
-            "types of hoodies", "what hoodies", "hoodie types", "hoodies available",
-            "what clothing", "clothing types", "clothing available", "show clothes", "show clothing",
-            "type of clothing", "types of clothing", "what type", "what types", "what do you have"
-        ],
-        productBlack: ["black hoodie", "black edition", "black color hoodie"],
-        productGreen: ["green hoodie", "green edition"],
-        productLight: [
-            "beige hoodie", "white hoodie", "tan hoodie", "light yellow hoodie",
-            "beige edition", "white edition", "tan edition", "light yellow edition"
-        ],
-        productRed: ["red hoodie", "red edition", "red color hoodie"],
-        productJacket: ["jacket", "coat", "outerwear"]
-    };
-
-    if (containsAny(message, intents.askHoodies)) {
-        aiMsg.textContent = "AI: Here are the hoodie types we have:";
-        aiMsg.style.alignSelf = "flex-start";
-        chatBox.appendChild(aiMsg);
-
-        const list = document.createElement("div");
-        list.style.whiteSpace = "pre-line";
-        list.textContent = hoodieTypes.join("\n");
-        list.style.backgroundColor = "#e2e3e5";
-        list.style.alignSelf = "flex-start";
-        list.style.padding = "10px 14px";
-        list.style.borderRadius = "16px";
-        list.style.maxWidth = "70%";
-        list.style.fontSize = "14px";
-        list.style.lineHeight = "1.4";
-        chatBox.appendChild(list);
-
-        userInput.value = "";
-        chatBox.scrollTop = chatBox.scrollHeight;
-        return;
-    }
-
-    const productMap = [
-        { keywords: intents.productBlack, link: "product1.html", label: "Go to Black Product"},
-        { keywords: intents.productGreen, link: "product2.html", label: "Go to Green Product" },
-        { keywords: intents.productLight, link: "product3.html", label: "Go to Light Color Product" },
-        { keywords: intents.productRed, link: "product4.html", label: "Go to Red Product" },
-    ];
-
-    for (const item of productMap) {
-        if (containsAny(message, item.keywords)) {
-            aiMsg.textContent = "AI: Sure! Here's what you're looking for:";
-            aiMsg.style.alignSelf = "flex-start";
-
-            const btn = document.createElement("button");
-            btn.textContent = item.label;
-            btn.className = "product-link-btn"; 
-            btn.onclick = () => window.location.href = item.link;
-            chatBox.appendChild(aiMsg);
-            chatBox.appendChild(btn);
-
-            userInput.value = "";
-            chatBox.scrollTop = chatBox.scrollHeight;
-            return;
-        }
-    }
-
-    if (containsAny(message, intents.greeting)) {
-        aiMsg.textContent = "AI: Hello! How can I assist you today?";
-        aiMsg.style.alignSelf = "flex-start";
-        chatBox.appendChild(aiMsg);
-        userInput.value = "";
-        chatBox.scrollTop = chatBox.scrollHeight;
-        return;
-    }
-
-    if (containsAny(message, intents.thanks)) {
-        aiMsg.textContent = "AI: You're welcome! Let me know if you need anything else.";
-        aiMsg.style.alignSelf = "flex-start";
-        chatBox.appendChild(aiMsg);
-        userInput.value = "";
-        chatBox.scrollTop = chatBox.scrollHeight;
-        return;
-    }
-
-    aiMsg.textContent = "AI: Sorry, I didn't understand that. Try asking about hoodie types or specific colors like 'black hoodie'.";
-    aiMsg.style.alignSelf = "flex-start";
-    chatBox.appendChild(aiMsg);
-
-    userInput.value = "";
-    chatBox.scrollTop = chatBox.scrollHeight;
+  userInput.value = "";
 }
 
 function clearConversation() {
-    const chatBox = document.getElementById("chat-box");
-    chatBox.innerHTML = "";
+  const chatBox = document.getElementById("chat-box");
+  chatBox.innerHTML = "";
 }
+</script>
+<script>
+document.getElementById("user-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") { e.preventDefault(); sendMessage(); }
+});
 </script>
     </body>
 </html>
