@@ -230,3 +230,6 @@ nav a:hover {
   .product-block{width:100%;max-width:none;}
   .product-block img{padding:20px;aspect-ratio:1/1;}
 }
+.logo-video::-webkit-media-controls {
+  display: none;
+}
